@@ -108,34 +108,91 @@ class carObj {
         Point C;
         Point D;
 
+        // inner quad
+        Point E;
+        Point F;
+        Point G;
+        Point H;
+
         carObj()
         {
 
         }
 
-        carObj(Point& a, Point& b, Point& c, Point& d) {
+        carObj(Point& a, Point& b, Point& c, Point& d, Point& e, Point& f, Point& g, Point& h) {
             this->A = a;
             this->B = b;
             this->C = c;
             this->D = d;
+            this->E = e;
+            this->F = f;
+            this->G = g;
+            this->H = h;
         }
+
+
 
         void PlayercarDraw()
         {
             glPushMatrix();
+
             glTranslatef(positionx, 0.0f, 0.0f);
-            glColor3ub(100, 30, 240);
+            glColor3ub(0, 0, 0);
             glBegin(GL_QUADS);
             glVertex3d(A.x, A.y , 0);
             glVertex3d(B.x, B.y, 0);
             glVertex3d(C.x, C.y, 0);
             glVertex3d(D.x, D.y, 0);
+            glEnd();
+
+            glColor3ub(100, 100, 100);
+            glBegin(GL_QUADS);
+            glVertex3d(E.x, E.y , 0);
+            glVertex3d(F.x, F.y, 0);
+            glVertex3d(G.x, G.y, 0);
+            glVertex3d(H.x, H.y, 0);
+            glEnd();
+
+            glColor3ub(167,173,186);
+            // glColor3ub(120, 230, 240);
+            glBegin(GL_LINES);
+            glVertex3d(A.x, A.y , 0);
+            glVertex3d(E.x, E.y, 0);
+            glEnd();
+
+            // glColor3ub(120, 230, 240);
+            glColor3ub(167,173,186);
+            glBegin(GL_LINES);
+            glVertex3d(B.x, B.y , 0);
+            glVertex3d(F.x, F.y, 0);
+            glEnd();
+
+            glColor3ub(167,173,186);
+            // glColor3ub(120, 230, 240);
+            glBegin(GL_LINES);
+            glVertex3d(C.x, C.y , 0);
+            glVertex3d(G.x, G.y, 0);
+            glEnd();
+
+            glColor3ub(167,173,186);
+            // glColor3ub(120, 230, 240);
+            glBegin(GL_LINES);
+            glVertex3d(D.x, D.y , 0);
+            glVertex3d(H.x, H.y, 0);
+            glEnd();
+
+
             A.x = A.x + positionx;
             B.x = B.x + positionx;
             C.x = C.x + positionx;
             D.x = D.x + positionx;
 
-            glEnd();
+            E.x = E.x + positionx;
+            F.x = F.x + positionx;
+            G.x = G.x + positionx;
+            H.x = H.x + positionx;
+
+
             glPopMatrix();
 
         }
@@ -395,7 +452,14 @@ void car()
     Point p2 =  Point(-1, -11);
     Point p3 =  Point(-1, -16);
     Point p4 =  Point(-4, -16);
-    c = carObj(p1, p2, p3, p4);
+
+    // inner quad
+    Point p5 =  Point(-3, -13);
+    Point p6 =  Point(-2, -13);
+    Point p7 =  Point(-2, -15);
+    Point p8 =  Point(-3, -15);
+
+    c = carObj(p1, p2, p3, p4, p5, p6, p7, p8);
     c.PlayercarDraw();
     // showPoint(c);
 }
