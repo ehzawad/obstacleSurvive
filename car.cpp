@@ -1,10 +1,10 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
+#include <cmath>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-#include <cmath>
 #include <string>
 // SFML
 #include "SFML/Graphics.hpp"
@@ -29,6 +29,64 @@ GLfloat positionx = 0.0f;
 
 auto score = 0;
 
+//For Display TEXT
+/* const auto font1=GLUT_BITMAP_TIMES_ROMAN_24; */
+/* const auto font2=GLUT_BITMAP_HELVETICA_18 ; */
+/* const auto font3=GLUT_BITMAP_8_BY_13; */
+/*  */
+/* char s[30]; */
+/* void renderBitmapString(float x, float y, void *font,const char *string){ */
+/*     const char *c; */
+/*     glRasterPos2f(x, y); */
+/*     for (c=string; *c != '\0'; c++) { */
+/*         glutBitmapCharacter(font, *c); */
+/*     } */
+/* } */
+/*  */
+
+void tree()
+{
+      glColor3f(0.133, 0.545, 0.133);
+      glBegin(GL_TRIANGLES);
+      glVertex3d(-13, 11, 0);
+      glVertex3d(-12, 13, 0);
+      glVertex3d(-11, 11, 0);
+      glEnd();
+      glColor3f(0.971, 0.752, 0.429);
+      glBegin(GL_TRIANGLES);
+      glVertex3d(-12, 11, 0);
+      glVertex3d(-11.5, 8, 0);
+      glVertex3d(-12.5, 8, 0);
+      glEnd();
+
+
+      glPushMatrix();
+      glTranslatef(-1, -17, 0);
+      glColor3f(0.133, 0.545, 0.133);
+      glBegin(GL_TRIANGLES);
+      glVertex3d(-13, 11, 0);
+      glVertex3d(-12, 13, 0);
+      glVertex3d(-11, 11, 0);
+      glEnd();
+      glColor3f(0.971, 0.752, 0.429);
+      glBegin(GL_TRIANGLES);
+      glVertex3d(-12, 11, 0);
+      glVertex3d(-11.5, 8, 0);
+      glVertex3d(-12.5, 8, 0);
+      glEnd();
+      glPopMatrix();
+
+
+      glPushMatrix();
+      glTranslatef(-1, -16, 0);
+      glColor3f(0.133, 0.545, 0.133);
+      glBegin(GL_TRIANGLES);
+      glVertex3d(-13, 11, 0);
+      glVertex3d(-12, 13, 0);
+      glVertex3d(-11, 11, 0);
+      glEnd();
+      glPopMatrix();
+}
 
 class Point {
     public:
@@ -598,14 +656,14 @@ void car3Oppo()
 void padestrian()
 {
     glPushMatrix();
-    glColor3ub(34,139,34);
+    glColor3ub(139,69,19);
     glBegin(GL_QUADS);
     glVertex3d(-14, 17, 0);
     glVertex3d(-9, 17, 0);
     glVertex3d(-9, -17, 0);
     glVertex3d(-14, -17, 0);
     glEnd();
-    glColor3ub(34,139,34);
+    glColor3ub(139,69,19);
     glBegin(GL_QUADS);
     glVertex3d(+14, 17, 0);
     glVertex3d(+9, 17, 0);
@@ -618,6 +676,7 @@ void padestrian()
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 
     padestrian();
     sideBorder();
@@ -644,6 +703,7 @@ void display()
     glPopMatrix();
 
 
+    tree();
 
     collisionCheck(c, cO);
     collisionCheck(c, c1);
