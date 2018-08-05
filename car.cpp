@@ -267,26 +267,41 @@ void update(int value) {
 
 void middleBar()
 {
+
     glPushMatrix();
     glColor3ub(0, 30, 20);
-    glBegin(GL_LINES);
-    glVertex3d(0, top + 12, 0);
-    glVertex3d(0, top - 2, 0);
-    glBegin(GL_LINES);
-    glVertex3d(0, top, 0);
-    glVertex3d(0, top - 10, 0);
+    glBegin(GL_QUADS);
+    glVertex3d(-0.5, top + 12, 0);
+    glVertex3d(0.5, top + 12, 0);
+    glVertex3d(0.5, top - 2, 0);
+    glVertex3d(-0.5, top - 2, 0);
+    glEnd();
 
 
-    // glEnd();
     glColor3ub(0, 30, 20);
-    glBegin(GL_LINES);
-    glVertex3d(0, top - 10 -2, 0);
-    glVertex3d(0, top -10 - 10 -2, 0);
-    // glEnd();
+    glBegin(GL_QUADS);
+    glVertex3d(-0.5, top, 0);
+    glVertex3d(0.5, top, 0);
+    glVertex3d(0.5, top - 10, 0);
+    glVertex3d(-0.5, top -10, 0);
+    glEnd();
+
+
     glColor3ub(0, 30, 20);
-    glBegin(GL_LINES);
-    glVertex3d(0, top - 24, 0);
-    glVertex3d(0, top - 24 -10, 0);
+    glBegin(GL_QUADS);
+    glVertex3d(-0.5, top -12, 0);
+    glVertex3d(0.5, top -12, 0);
+    glVertex3d(0.5, top - 22, 0);
+    glVertex3d(-0.5, top - 22, 0);
+    glEnd();
+
+
+    glColor3ub(0, 30, 20);
+    glBegin(GL_QUADS);
+    glVertex3d(-0.5, top - 24, 0);
+    glVertex3d(0.5, top - 24, 0);
+    glVertex3d(0.5, top - 34, 0);
+    glVertex3d(-0.5, top - 34, 0);
     glEnd();
     glPopMatrix();
 
@@ -357,14 +372,14 @@ void processSpecialKeys (int key, int mx, int my) {
 void sideBorder()
 {
     glPushMatrix();
-    glColor3ub(130, 200, 20);
+    glColor3ub(52,61,70);
     glBegin(GL_QUADS);
     glVertex3d(-9, 17, 0);
     glVertex3d(-8, 17, 0);
     glVertex3d(-8, -17, 0);
     glVertex3d(-9, -17, 0);
     glEnd();
-    glColor3ub(130, 200, 20);
+    glColor3ub(52,61,70);
     glBegin(GL_QUADS);
     glVertex3d(+9, 17, 0);
     glVertex3d(+8, 17, 0);
@@ -426,9 +441,31 @@ void car3Oppo()
 
 }
 
+void padestrian()
+{
+    glPushMatrix();
+    glColor3ub(34,139,34);
+    glBegin(GL_QUADS);
+    glVertex3d(-14, 17, 0);
+    glVertex3d(-9, 17, 0);
+    glVertex3d(-9, -17, 0);
+    glVertex3d(-14, -17, 0);
+    glEnd();
+    glColor3ub(34,139,34);
+    glBegin(GL_QUADS);
+    glVertex3d(+14, 17, 0);
+    glVertex3d(+9, 17, 0);
+    glVertex3d(+9, -17, 0);
+    glVertex3d(+14, -17, 0);
+    glEnd();
+    glPopMatrix();
+}
+
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    padestrian();
     sideBorder();
 
     glPushMatrix();
