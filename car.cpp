@@ -55,17 +55,30 @@ class Opponent {
         Point B;
         Point C;
         Point D;
+
+        // inner quad
+        Point E;
+        Point F;
+        Point G;
+        Point H;
+
         std::string name;
         Opponent()
         {
 
         }
 
-         Opponent(Point& a, Point& b, Point& c, Point& d, std::string name) {
+         Opponent(Point& a, Point& b, Point& c, Point& d, Point& e, Point& f, Point& g, Point& h, std::string name) {
             this->A = a;
             this->B = b;
             this->C = c;
             this->D = d;
+
+            this->E = e;
+            this->F = f;
+            this->G = g;
+            this->H = h;
+
             this->name = name;
         }
 
@@ -79,6 +92,49 @@ class Opponent {
             glVertex3d(B.x, B.y, 0);
             glVertex3d(C.x, C.y, 0);
             glVertex3d(D.x, D.y, 0);
+            glEnd();
+
+            glColor3ub(100, 100, 100);
+            glBegin(GL_QUADS);
+            glVertex3d(E.x, E.y , 0);
+            glVertex3d(F.x, F.y, 0);
+            glVertex3d(G.x, G.y, 0);
+            glVertex3d(H.x, H.y, 0);
+            glEnd();
+
+
+            glColor3ub(0,0,0);
+            // glColor3ub(120, 230, 240);
+            glBegin(GL_LINES);
+            glVertex3d(A.x, A.y , 0);
+            glVertex3d(E.x, E.y, 0);
+            glEnd();
+
+            // glColor3ub(120, 230, 240);
+            //
+            glColor3ub(0,0,0);
+            glBegin(GL_LINES);
+            glVertex3d(B.x, B.y , 0);
+            glVertex3d(F.x, F.y, 0);
+            glEnd();
+
+            glColor3ub(0,0,0);
+            // glColor3ub(120, 230, 240);
+            glBegin(GL_LINES);
+            glVertex3d(C.x, C.y , 0);
+            glVertex3d(G.x, G.y, 0);
+            glEnd();
+
+
+            glColor3ub(0,0,0);
+            // glColor3ub(120, 230, 240);
+            glBegin(GL_LINES);
+            glVertex3d(D.x, D.y , 0);
+            glVertex3d(H.x, H.y, 0);
+            glEnd();
+
+
+
             A.x = A.x + tx;
             B.x = B.x + tx;
             C.x = C.x + tx;
@@ -88,7 +144,22 @@ class Opponent {
             B.y = B.y + ty;
             C.y = C.y + ty;
             D.y = D.y + ty;
-            glEnd();
+
+
+
+            // inner Quads
+            E.x = E.x + tx;
+            F.x = F.x + tx;
+            G.x = G.x + tx;
+            H.x = H.x + tx;
+
+            E.y = E.y + ty;
+            F.y = F.y + ty;
+            G.y = G.y + ty;
+            H.y = H.y + ty;
+
+
+
             glPopMatrix();
 
         }
@@ -471,7 +542,16 @@ void carOppo()
     Point p2 =  Point(-1+7, -11+22);
     Point p3 =  Point(-1+7, -16+22);
     Point p4 =  Point(-4+7, -16+22);
-    cO = Opponent(p1, p2, p3, p4, "car1");
+
+
+    Point p5 =  Point(-4+7+2, -11+22-1);
+    Point p6 =  Point(-4+7+1, -11+22-1);
+    Point p7 =  Point(-4+7+1, -11+22-3);
+    Point p8 =  Point(-4+7+2, -11+22- 3);
+
+
+
+    cO = Opponent(p1, p2, p3, p4, p5, p6, p7, p8, "car1");
     cO.oppocarDraw(oppoX, oppoY, 122, 143, 222);
     cO.ScoreUpdate();
     // showPoint(cO);
@@ -483,7 +563,7 @@ void car2Oppo()
     Point p2 =  Point(-1+7-5, -11+22+4);
     Point p3 =  Point(-1+7-5, -16+22+4);
     Point p4 =  Point(-4+7-5, -16+22+4);
-    c1 = Opponent(p1, p2, p3, p4, "car2");
+    /* c1 = Opponent(p1, p2, p3, p4, "car2"); */
     c1.oppocarDraw(oppo2X, oppo2Y, 200, 155, 240);
     c1.ScoreUpdate();
     // showPoint(c1);
@@ -496,7 +576,7 @@ void car3Oppo()
     Point p2 =  Point(-1+7-5, -11+22+4);
     Point p3 =  Point(-1+7-5, -16+22+4);
     Point p4 =  Point(-4+7-5, -16+22+4);
-    c2 = Opponent(p1, p2, p3, p4, "car3");
+    /* c2 = Opponent(p1, p2, p3, p4, "car3"); */
     c2.oppocarDraw(oppo3X, oppo3Y, 133, 299, 155);
     c2.ScoreUpdate();
     // showPoint(c2);
