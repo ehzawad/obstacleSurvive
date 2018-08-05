@@ -547,7 +547,7 @@ void carOppo()
     Point p5 =  Point(-4+7+2, -11+22-1);
     Point p6 =  Point(-4+7+1, -11+22-1);
     Point p7 =  Point(-4+7+1, -11+22-3);
-    Point p8 =  Point(-4+7+2, -11+22- 3);
+    Point p8 =  Point(-4+7+2, -11+22-3);
 
 
 
@@ -563,7 +563,13 @@ void car2Oppo()
     Point p2 =  Point(-1+7-5, -11+22+4);
     Point p3 =  Point(-1+7-5, -16+22+4);
     Point p4 =  Point(-4+7-5, -16+22+4);
-    /* c1 = Opponent(p1, p2, p3, p4, "car2"); */
+
+    Point p5 =  Point(-4+7-5+2, -11+22+4-1);
+    Point p6 =  Point(-4+7-5+1, -11+22+4-1);
+    Point p7 =  Point(-4+7-5+1, -11+22+4-3);
+    Point p8 =  Point(-4+7-5+2, -11+22+4-3);
+
+    c1 = Opponent(p1, p2, p3, p4, p5, p6, p7, p8, "car2");
     c1.oppocarDraw(oppo2X, oppo2Y, 200, 155, 240);
     c1.ScoreUpdate();
     // showPoint(c1);
@@ -576,7 +582,13 @@ void car3Oppo()
     Point p2 =  Point(-1+7-5, -11+22+4);
     Point p3 =  Point(-1+7-5, -16+22+4);
     Point p4 =  Point(-4+7-5, -16+22+4);
-    /* c2 = Opponent(p1, p2, p3, p4, "car3"); */
+
+    Point p5 =  Point(-4+7-5+2, -11+22+4-1);
+    Point p6 =  Point(-4+7-5+1, -11+22+4-1);
+    Point p7 =  Point(-4+7-5+1, -11+22+4-3);
+    Point p8 =  Point(-4+7-5+2, -11+22+4-3);
+
+    c2 = Opponent(p1, p2, p3, p4, p5, p6, p7, p8, "car3");
     c2.oppocarDraw(oppo3X, oppo3Y, 133, 299, 155);
     c2.ScoreUpdate();
     // showPoint(c2);
