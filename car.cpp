@@ -498,55 +498,6 @@ void display()
     glFlush();
 }
 
-void roadmusic()
-{
-  // sf::RenderWindow renderWindow(sf::VideoMode(640, 480), "Demo Game");
-
-  // sf::Event event;
-  sf::Music music;
-  music.openFromFile("music.ogg");
-  music.setVolume(50);
-
-  music.play();
-
-  /* while (renderWindow.isOpen()){ */
-  /*   while (renderWindow.pollEvent(event)){ */
-  /*     if (event.type == sf::Event::EventType::Closed) */
-  /*       renderWindow.close(); */
-  /*  */
-  /*  */
-  /*     if (event.type == sf::Event::EventType::KeyPressed){ */
-  /*  */
-  /*       // Up and down to control volume */
-  /*       if (event.key.code == sf::Keyboard::Key::Down) */
-  /*         music.setVolume(music.getVolume() - 10); */
-  /*       if (event.key.code == sf::Keyboard::Key::Up) */
-  /*         music.setVolume(music.getVolume() + 10); */
-  /*  */
-  /*  */
-  /*       // Left and right to control tracking position */
-  /*       if (event.key.code == sf::Keyboard::Key::Right){ */
-  /*         auto newPos = music.getPlayingOffset() + sf::seconds(5); */
-  /*         music.setPlayingOffset(sf::Time(newPos)); */
-  /*       } */
-  /*  */
-  /*       if (event.key.code == sf::Keyboard::Key::Left){ */
-  /*         auto newPos = music.getPlayingOffset() - sf::seconds(5); */
-  /*         if (newPos.asSeconds() <= 0.0f) newPos = sf::seconds(0); */
-  /*         music.setPlayingOffset(sf::Time(newPos)); */
-  /*       } */
-  /*  */
-  /*       std::cout << "Current volume is :" << music.getVolume() << " position is: " */
-  /*         << music.getPlayingOffset().asSeconds() << std::endl; */
-  /*     } */
-  /*   } */
-  /*  */
-  /*   renderWindow.clear(); */
-  /*   renderWindow.display(); */
-  /* } */
-
-}
-
 int main(int argc, char** argv)
 {
     glutInit(&argc, argv);
