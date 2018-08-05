@@ -308,6 +308,20 @@ void road()
     glEnd();
     glPopMatrix();
 
+    glPushMatrix();
+
+    glColor3ub(0, 30, 0);
+    glBegin(GL_LINES);
+    glVertex3d(-9, +17, 0);
+    glVertex3d(-9, -17, 0);
+    glEnd();
+    glColor3ub(0, 30, 0);
+    glBegin(GL_LINES);
+    glVertex3d(+9, +17, 0);
+    glVertex3d(+9, -17, 0);
+    glEnd();
+    glPopMatrix();
+
 
 }
 
@@ -338,6 +352,27 @@ void processSpecialKeys (int key, int mx, int my) {
     default:
         break;
     }
+}
+
+void sideBorder()
+{
+    glPushMatrix();
+    glColor3ub(130, 200, 20);
+    glBegin(GL_QUADS);
+    glVertex3d(-9, 17, 0);
+    glVertex3d(-8, 17, 0);
+    glVertex3d(-8, -17, 0);
+    glVertex3d(-9, -17, 0);
+    glEnd();
+    glColor3ub(130, 200, 20);
+    glBegin(GL_QUADS);
+    glVertex3d(+9, 17, 0);
+    glVertex3d(+8, 17, 0);
+    glVertex3d(+8, -17, 0);
+    glVertex3d(+9, -17, 0);
+    glEnd();
+    glPopMatrix();
+
 }
 
 
@@ -394,10 +429,12 @@ void car3Oppo()
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    sideBorder();
 
     glPushMatrix();
     road();
     glPopMatrix();
+    middleBar();
 
     glPushMatrix();
     car();
@@ -415,7 +452,6 @@ void display()
     car3Oppo();
     glPopMatrix();
 
-    middleBar();
 
 
     collisionCheck(c, cO);
