@@ -257,9 +257,6 @@ void update(int value) {
     }
         top--;
 
-    // std::cout << top << std::endl;
-
-
     glutPostRedisplay();
     glutTimerFunc(100, update, 0);
 }
