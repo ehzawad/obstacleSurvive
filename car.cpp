@@ -736,7 +736,7 @@ int main(int argc, char** argv)
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
     glutInitWindowSize(2*280, 2*340);
-    glutCreateWindow("Batman");
+    glutCreateWindow("Racing with obstacles");
     init();
     glutDisplayFunc(display);
     glutTimerFunc(1000, timer, 0);
