@@ -4,11 +4,11 @@
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
+#include <cstdio>
 #include <iostream>
 #include <string>
 // SFML
 #include "SFML/Audio.hpp"
-#include "SFML/Graphics.hpp"
 
 #define PI 3.1416
 
