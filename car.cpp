@@ -802,14 +802,14 @@ int main(int argc, char** argv)
     glutSpecialFunc(processSpecialKeys);
     glutKeyboardFunc(processKeys);
 
-    if (start == 1) {
-        sf::Music music;
-        if (!music.openFromFile("music.ogg")) {
-            return -1;
-        }
-        music.setVolume(50);
-        music.play();
+    // GLUT Thread management sucks
+    // SFML sound functionality
+    sf::Music music;
+    if (!music.openFromFile("music.ogg")) {
+        return -1;
     }
+    music.setVolume(50);
+    music.play();
     glutMainLoop();
     return 0;
 }
