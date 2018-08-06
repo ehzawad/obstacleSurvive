@@ -447,7 +447,7 @@ void updateOppo(int value)
 
 void update2Oppo(int value)
 {
-    if (oppo2Y <= -33) {
+    if (oppo2Y <= -42) {
         oppo2Y = randGen(MIN, MAX);
         oppo2X = randGen(-7, 2);
 
@@ -645,15 +645,15 @@ void carOppo()
 
 void car2Oppo()
 {
-    Point p1 = Point(-4 + 7 - 5, -11 + 22 + 4);
-    Point p2 = Point(-1 + 7 - 5, -11 + 22 + 4);
-    Point p3 = Point(-1 + 7 - 5, -16 + 22 + 4);
-    Point p4 = Point(-4 + 7 - 5, -16 + 22 + 4);
+    Point p1 = Point(-4 + 7 - 5, -11 + 22 + 4 + 10);
+    Point p2 = Point(-1 + 7 - 5, -11 + 22 + 4 + 10);
+    Point p3 = Point(-1 + 7 - 5, -16 + 22 + 4 + 10);
+    Point p4 = Point(-4 + 7 - 5, -16 + 22 + 4 + 10);
 
-    Point p5 = Point(-4 + 7 - 5 + 2, -11 + 22 + 4 - 1);
-    Point p6 = Point(-4 + 7 - 5 + 1, -11 + 22 + 4 - 1);
-    Point p7 = Point(-4 + 7 - 5 + 1, -11 + 22 + 4 - 3);
-    Point p8 = Point(-4 + 7 - 5 + 2, -11 + 22 + 4 - 3);
+    Point p5 = Point(-4 + 7 - 5 + 2, -11 + 22 + 4 - 1 + 10);
+    Point p6 = Point(-4 + 7 - 5 + 1, -11 + 22 + 4 - 1 + 10);
+    Point p7 = Point(-4 + 7 - 5 + 1, -11 + 22 + 4 - 3 + 10);
+    Point p8 = Point(-4 + 7 - 5 + 2, -11 + 22 + 4 - 3 + 10);
 
     c1 = Opponent(p1, p2, p3, p4, p5, p6, p7, p8, "car2");
     c1.oppocarDraw(oppo2X, oppo2Y, 200, 155, 240);
