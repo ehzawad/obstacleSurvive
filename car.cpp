@@ -7,8 +7,8 @@
 #include <iostream>
 #include <string>
 // SFML
-#include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
+#include "SFML/Graphics.hpp"
 
 #define PI 3.1416
 
@@ -16,6 +16,9 @@
 #define MIN 5
 
 auto timeUpdate = 100;
+
+int start = 0;
+int gv = 0;
 
 GLfloat top = 27.0f;
 GLfloat oppoY = 0.0f;
@@ -30,14 +33,48 @@ GLfloat positionx = 0.0f;
 auto score = 0;
 
 // For Display TEXT
-const auto font=GLUT_BITMAP_8_BY_13;
+const auto font1 = GLUT_BITMAP_TIMES_ROMAN_24;
+const auto font2 = GLUT_BITMAP_HELVETICA_18;
+const auto font3 = GLUT_BITMAP_8_BY_13;
+const auto font = GLUT_BITMAP_8_BY_13;
 
 char s[30];
-void renderBitmapString(float x, float y, void *font,const char *string){
-    const char *c;
+void renderBitmapString(float x, float y, void* font, const char* string)
+{
+    const char* c;
     glRasterPos2f(x, y);
-    for (c=string; *c != '\0'; c++) {
+    for (c = string; *c != '\0'; c++) {
         glutBitmapCharacter(font, *c);
+    }
+}
+
+void processKeys(unsigned char key, int x, int y)
+{
+    switch (key) {
+    case ' ':
+        if (start == 0) {
+            start = 1;
+            gv = 0;
+            score = 0;
+            timeUpdate = 100;
+
+            top = 27.0f;
+            oppoY = 0.0f;
+            oppoX = 0.0f;
+            oppo2Y = 0.0f;
+            oppo2X = 0.0f;
+
+            oppo3Y = 0.0f;
+            oppo3X = 0.0f;
+            positionx = 0.0f;
+        }
+        break;
+
+    case 27:
+        exit(0);
+        break;
+    default:
+        break;
     }
 }
 
@@ -46,14 +83,14 @@ void dataInfo()
     //Print Score
     char buffer[50];
     sprintf(buffer, "SCORE: %d", score);
-    glColor3f(0.050, 1.000, 0.0400);
+    glColor3ub(204, 204, 255);
     renderBitmapString(9.5, 15, (void*)font, buffer);
 
     //Speed Print
     char buffer1[50];
-    sprintf(buffer1, "SPEED:%dKm/h", abs(timeUpdate - 100));
-    glColor3f(0.000, 1.000, 0.500);
-    renderBitmapString(9.5, 15 - 2, (void*)font, buffer1);
+    sprintf(buffer1, "SPEED:%d m/s", abs(timeUpdate - 100));
+    glColor3ub(169, 169, 169);
+    renderBitmapString(9, 15 - 2, (void*)font, buffer1);
 
     char buffer2[50];
     sprintf(buffer2, "Drive Safe");
@@ -63,295 +100,271 @@ void dataInfo()
 
 void tree()
 {
-      glColor3f(0.133, 0.545, 0.133);
-      glBegin(GL_TRIANGLES);
-      glVertex3d(-13, 11, 0);
-      glVertex3d(-12, 13, 0);
-      glVertex3d(-11, 11, 0);
-      glEnd();
-      glColor3f(0.971, 0.752, 0.429);
-      glBegin(GL_TRIANGLES);
-      glVertex3d(-12, 11, 0);
-      glVertex3d(-11.5, 8, 0);
-      glVertex3d(-12.5, 8, 0);
-      glEnd();
+    glColor3f(0.133, 0.545, 0.133);
+    glBegin(GL_TRIANGLES);
+    glVertex3d(-13, 11, 0);
+    glVertex3d(-12, 13, 0);
+    glVertex3d(-11, 11, 0);
+    glEnd();
+    glColor3f(0.971, 0.752, 0.429);
+    glBegin(GL_TRIANGLES);
+    glVertex3d(-12, 11, 0);
+    glVertex3d(-11.5, 8, 0);
+    glVertex3d(-12.5, 8, 0);
+    glEnd();
 
+    glPushMatrix();
+    glTranslatef(-1, -17, 0);
+    glColor3f(0.133, 0.545, 0.133);
+    glBegin(GL_TRIANGLES);
+    glVertex3d(-13, 11, 0);
+    glVertex3d(-12, 13, 0);
+    glVertex3d(-11, 11, 0);
+    glEnd();
+    glColor3f(0.971, 0.752, 0.429);
+    glBegin(GL_TRIANGLES);
+    glVertex3d(-12, 11, 0);
+    glVertex3d(-11.5, 8, 0);
+    glVertex3d(-12.5, 8, 0);
+    glEnd();
+    glPopMatrix();
 
-      glPushMatrix();
-      glTranslatef(-1, -17, 0);
-      glColor3f(0.133, 0.545, 0.133);
-      glBegin(GL_TRIANGLES);
-      glVertex3d(-13, 11, 0);
-      glVertex3d(-12, 13, 0);
-      glVertex3d(-11, 11, 0);
-      glEnd();
-      glColor3f(0.971, 0.752, 0.429);
-      glBegin(GL_TRIANGLES);
-      glVertex3d(-12, 11, 0);
-      glVertex3d(-11.5, 8, 0);
-      glVertex3d(-12.5, 8, 0);
-      glEnd();
-      glPopMatrix();
-
-
-      glPushMatrix();
-      glTranslatef(-1, -16, 0);
-      glColor3f(0.133, 0.545, 0.133);
-      glBegin(GL_TRIANGLES);
-      glVertex3d(-13, 11, 0);
-      glVertex3d(-12, 13, 0);
-      glVertex3d(-11, 11, 0);
-      glEnd();
-      glPopMatrix();
+    glPushMatrix();
+    glTranslatef(-1, -16, 0);
+    glColor3f(0.133, 0.545, 0.133);
+    glBegin(GL_TRIANGLES);
+    glVertex3d(-13, 11, 0);
+    glVertex3d(-12, 13, 0);
+    glVertex3d(-11, 11, 0);
+    glEnd();
+    glPopMatrix();
 }
 
 class Point {
-    public:
+public:
     float x;
     float y;
     Point()
     {
-
     }
 
-    Point(float X, float Y){
+    Point(float X, float Y)
+    {
         this->x = X;
         this->y = Y;
     }
-
 };
 
-
-
-
 class Opponent {
-    public:
-        Point A;
-        Point B;
-        Point C;
-        Point D;
+public:
+    Point A;
+    Point B;
+    Point C;
+    Point D;
 
-        // inner quad
-        Point E;
-        Point F;
-        Point G;
-        Point H;
+    // inner quad
+    Point E;
+    Point F;
+    Point G;
+    Point H;
 
-        std::string name;
-        Opponent()
-        {
+    std::string name;
+    Opponent()
+    {
+    }
 
+    Opponent(Point& a, Point& b, Point& c, Point& d, Point& e, Point& f, Point& g, Point& h, std::string name)
+    {
+        this->A = a;
+        this->B = b;
+        this->C = c;
+        this->D = d;
+
+        this->E = e;
+        this->F = f;
+        this->G = g;
+        this->H = h;
+
+        this->name = name;
+    }
+
+    void oppocarDraw(int tx, int ty, int r, int g, int b)
+    {
+        glPushMatrix();
+        glTranslatef(tx, ty, 0.0f);
+        glColor3ub(r, g, b);
+        glBegin(GL_QUADS);
+        glVertex3d(A.x, A.y, 0);
+        glVertex3d(B.x, B.y, 0);
+        glVertex3d(C.x, C.y, 0);
+        glVertex3d(D.x, D.y, 0);
+        glEnd();
+
+        glColor3ub(100, 100, 100);
+        glBegin(GL_QUADS);
+        glVertex3d(E.x, E.y, 0);
+        glVertex3d(F.x, F.y, 0);
+        glVertex3d(G.x, G.y, 0);
+        glVertex3d(H.x, H.y, 0);
+        glEnd();
+
+        glColor3ub(0, 0, 0);
+        // glColor3ub(120, 230, 240);
+        glBegin(GL_LINES);
+        glVertex3d(A.x, A.y, 0);
+        glVertex3d(E.x, E.y, 0);
+        glEnd();
+
+        // glColor3ub(120, 230, 240);
+        //
+        glColor3ub(0, 0, 0);
+        glBegin(GL_LINES);
+        glVertex3d(B.x, B.y, 0);
+        glVertex3d(F.x, F.y, 0);
+        glEnd();
+
+        glColor3ub(0, 0, 0);
+        // glColor3ub(120, 230, 240);
+        glBegin(GL_LINES);
+        glVertex3d(C.x, C.y, 0);
+        glVertex3d(G.x, G.y, 0);
+        glEnd();
+
+        glColor3ub(0, 0, 0);
+        // glColor3ub(120, 230, 240);
+        glBegin(GL_LINES);
+        glVertex3d(D.x, D.y, 0);
+        glVertex3d(H.x, H.y, 0);
+        glEnd();
+
+        A.x = A.x + tx;
+        B.x = B.x + tx;
+        C.x = C.x + tx;
+        D.x = D.x + tx;
+
+        A.y = A.y + ty;
+        B.y = B.y + ty;
+        C.y = C.y + ty;
+        D.y = D.y + ty;
+
+        // inner Quads
+        E.x = E.x + tx;
+        F.x = F.x + tx;
+        G.x = G.x + tx;
+        H.x = H.x + tx;
+
+        E.y = E.y + ty;
+        F.y = F.y + ty;
+        G.y = G.y + ty;
+        H.y = H.y + ty;
+
+        glPopMatrix();
+    }
+
+    void ScoreUpdate()
+    {
+        if (this->C.y <= -17) {
+            score++;
         }
-
-         Opponent(Point& a, Point& b, Point& c, Point& d, Point& e, Point& f, Point& g, Point& h, std::string name) {
-            this->A = a;
-            this->B = b;
-            this->C = c;
-            this->D = d;
-
-            this->E = e;
-            this->F = f;
-            this->G = g;
-            this->H = h;
-
-            this->name = name;
-        }
-
-        void oppocarDraw(int tx, int ty,int r,int g,int b)
-        {
-            glPushMatrix();
-            glTranslatef(tx, ty, 0.0f);
-            glColor3ub(r, g, b);
-            glBegin(GL_QUADS);
-            glVertex3d(A.x, A.y , 0);
-            glVertex3d(B.x, B.y, 0);
-            glVertex3d(C.x, C.y, 0);
-            glVertex3d(D.x, D.y, 0);
-            glEnd();
-
-            glColor3ub(100, 100, 100);
-            glBegin(GL_QUADS);
-            glVertex3d(E.x, E.y , 0);
-            glVertex3d(F.x, F.y, 0);
-            glVertex3d(G.x, G.y, 0);
-            glVertex3d(H.x, H.y, 0);
-            glEnd();
-
-
-            glColor3ub(0,0,0);
-            // glColor3ub(120, 230, 240);
-            glBegin(GL_LINES);
-            glVertex3d(A.x, A.y , 0);
-            glVertex3d(E.x, E.y, 0);
-            glEnd();
-
-            // glColor3ub(120, 230, 240);
-            //
-            glColor3ub(0,0,0);
-            glBegin(GL_LINES);
-            glVertex3d(B.x, B.y , 0);
-            glVertex3d(F.x, F.y, 0);
-            glEnd();
-
-            glColor3ub(0,0,0);
-            // glColor3ub(120, 230, 240);
-            glBegin(GL_LINES);
-            glVertex3d(C.x, C.y , 0);
-            glVertex3d(G.x, G.y, 0);
-            glEnd();
-
-
-            glColor3ub(0,0,0);
-            // glColor3ub(120, 230, 240);
-            glBegin(GL_LINES);
-            glVertex3d(D.x, D.y , 0);
-            glVertex3d(H.x, H.y, 0);
-            glEnd();
-
-
-
-            A.x = A.x + tx;
-            B.x = B.x + tx;
-            C.x = C.x + tx;
-            D.x = D.x + tx;
-
-            A.y = A.y + ty;
-            B.y = B.y + ty;
-            C.y = C.y + ty;
-            D.y = D.y + ty;
-
-
-
-            // inner Quads
-            E.x = E.x + tx;
-            F.x = F.x + tx;
-            G.x = G.x + tx;
-            H.x = H.x + tx;
-
-            E.y = E.y + ty;
-            F.y = F.y + ty;
-            G.y = G.y + ty;
-            H.y = H.y + ty;
-
-
-
-            glPopMatrix();
-
-        }
-
-        void ScoreUpdate()
-        {
-            if (this->C.y <= - 17) {
-                score++;
-            }
-        }
+    }
 };
 
 class carObj {
-    public:
-        Point A;
-        Point B;
-        Point C;
-        Point D;
+public:
+    Point A;
+    Point B;
+    Point C;
+    Point D;
 
-        // inner quad
-        Point E;
-        Point F;
-        Point G;
-        Point H;
+    // inner quad
+    Point E;
+    Point F;
+    Point G;
+    Point H;
 
-        carObj()
-        {
+    carObj()
+    {
+    }
 
-        }
+    carObj(Point& a, Point& b, Point& c, Point& d, Point& e, Point& f, Point& g, Point& h)
+    {
+        this->A = a;
+        this->B = b;
+        this->C = c;
+        this->D = d;
+        this->E = e;
+        this->F = f;
+        this->G = g;
+        this->H = h;
+    }
 
-        carObj(Point& a, Point& b, Point& c, Point& d, Point& e, Point& f, Point& g, Point& h) {
-            this->A = a;
-            this->B = b;
-            this->C = c;
-            this->D = d;
-            this->E = e;
-            this->F = f;
-            this->G = g;
-            this->H = h;
-        }
+    void PlayercarDraw()
+    {
+        glPushMatrix();
 
+        glTranslatef(positionx, 0.0f, 0.0f);
+        glColor3ub(0, 0, 0);
+        glBegin(GL_QUADS);
+        glVertex3d(A.x, A.y, 0);
+        glVertex3d(B.x, B.y, 0);
+        glVertex3d(C.x, C.y, 0);
+        glVertex3d(D.x, D.y, 0);
+        glEnd();
 
+        glColor3ub(100, 100, 100);
+        glBegin(GL_QUADS);
+        glVertex3d(E.x, E.y, 0);
+        glVertex3d(F.x, F.y, 0);
+        glVertex3d(G.x, G.y, 0);
+        glVertex3d(H.x, H.y, 0);
+        glEnd();
 
-        void PlayercarDraw()
-        {
-            glPushMatrix();
+        glColor3ub(167, 173, 186);
+        // glColor3ub(120, 230, 240);
+        glBegin(GL_LINES);
+        glVertex3d(A.x, A.y, 0);
+        glVertex3d(E.x, E.y, 0);
+        glEnd();
 
-            glTranslatef(positionx, 0.0f, 0.0f);
-            glColor3ub(0, 0, 0);
-            glBegin(GL_QUADS);
-            glVertex3d(A.x, A.y , 0);
-            glVertex3d(B.x, B.y, 0);
-            glVertex3d(C.x, C.y, 0);
-            glVertex3d(D.x, D.y, 0);
-            glEnd();
+        // glColor3ub(120, 230, 240);
+        glColor3ub(167, 173, 186);
+        glBegin(GL_LINES);
+        glVertex3d(B.x, B.y, 0);
+        glVertex3d(F.x, F.y, 0);
+        glEnd();
 
-            glColor3ub(100, 100, 100);
-            glBegin(GL_QUADS);
-            glVertex3d(E.x, E.y , 0);
-            glVertex3d(F.x, F.y, 0);
-            glVertex3d(G.x, G.y, 0);
-            glVertex3d(H.x, H.y, 0);
-            glEnd();
+        glColor3ub(167, 173, 186);
+        // glColor3ub(120, 230, 240);
+        glBegin(GL_LINES);
+        glVertex3d(C.x, C.y, 0);
+        glVertex3d(G.x, G.y, 0);
+        glEnd();
 
-            glColor3ub(167,173,186);
-            // glColor3ub(120, 230, 240);
-            glBegin(GL_LINES);
-            glVertex3d(A.x, A.y , 0);
-            glVertex3d(E.x, E.y, 0);
-            glEnd();
+        glColor3ub(167, 173, 186);
+        // glColor3ub(120, 230, 240);
+        glBegin(GL_LINES);
+        glVertex3d(D.x, D.y, 0);
+        glVertex3d(H.x, H.y, 0);
+        glEnd();
 
-            // glColor3ub(120, 230, 240);
-            glColor3ub(167,173,186);
-            glBegin(GL_LINES);
-            glVertex3d(B.x, B.y , 0);
-            glVertex3d(F.x, F.y, 0);
-            glEnd();
+        A.x = A.x + positionx;
+        B.x = B.x + positionx;
+        C.x = C.x + positionx;
+        D.x = D.x + positionx;
 
-            glColor3ub(167,173,186);
-            // glColor3ub(120, 230, 240);
-            glBegin(GL_LINES);
-            glVertex3d(C.x, C.y , 0);
-            glVertex3d(G.x, G.y, 0);
-            glEnd();
+        E.x = E.x + positionx;
+        F.x = F.x + positionx;
+        G.x = G.x + positionx;
+        H.x = H.x + positionx;
 
-            glColor3ub(167,173,186);
-            // glColor3ub(120, 230, 240);
-            glBegin(GL_LINES);
-            glVertex3d(D.x, D.y , 0);
-            glVertex3d(H.x, H.y, 0);
-            glEnd();
-
-
-            A.x = A.x + positionx;
-            B.x = B.x + positionx;
-            C.x = C.x + positionx;
-            D.x = D.x + positionx;
-
-            E.x = E.x + positionx;
-            F.x = F.x + positionx;
-            G.x = G.x + positionx;
-            H.x = H.x + positionx;
-
-
-            glPopMatrix();
-
-        }
-
-
+        glPopMatrix();
+    }
 };
-
 
 carObj c;
 Opponent cO;
 Opponent c1;
 Opponent c2;
-
 
 void collisionCheck(carObj& o, Opponent& p)
 {
@@ -363,22 +376,22 @@ void collisionCheck(carObj& o, Opponent& p)
     // std::cout << xRightPlayerCollide << std::endl;
 
     if ((yFaceToFaceCollide <= 0 || yDownToFaceCollide <= 4) && (xLeftPlayerCollide < 3 || xRightPlayerCollide < 3)) {
+
+        start = 0;
+        gv = 1;
         std::cout << "COLLIDED " << p.name << " " << std::endl;
-    }
-    else {
+    } else {
         /* std::cout << "NOT COLLIDED" << std::endl; */
         std::cout << timeUpdate << std::endl;
 
         // std::cout << score << std::endl;
     }
-
 }
 
-
-
-int randGen(int min, int max) {
-  srand(time(NULL));
-  return ((float) rand() / (float) RAND_MAX) * (max-min) + min;
+int randGen(int min, int max)
+{
+    srand(time(NULL));
+    return ((float)rand() / (float)RAND_MAX) * (max - min) + min;
 }
 
 void init()
@@ -390,15 +403,20 @@ void init()
 }
 
 template <typename T>
-void showPoint(T & c)
+void showPoint(T& c)
 {
-    std::cout << "p1: " << "x: " << c.A.x << " y: " << c.A.y <<  std::endl;
-    std::cout << "p2: " << "x: " << c.B.x << " y: " << c.B.y <<  std::endl;
-    std::cout << "p3: " << "x: " << c.C.x << " y: " << c.C.y <<  std::endl;
-    std::cout << "p4: " << "x: " << c.D.x << " y: " << c.D.y <<  std::endl;
+    std::cout << "p1: "
+              << "x: " << c.A.x << " y: " << c.A.y << std::endl;
+    std::cout << "p2: "
+              << "x: " << c.B.x << " y: " << c.B.y << std::endl;
+    std::cout << "p3: "
+              << "x: " << c.C.x << " y: " << c.C.y << std::endl;
+    std::cout << "p4: "
+              << "x: " << c.D.x << " y: " << c.D.y << std::endl;
 }
 
-void timer(int value) {
+void timer(int value)
+{
     if (timeUpdate >= 20) {
         timeUpdate = timeUpdate - 0.15;
     }
@@ -409,7 +427,8 @@ void timer(int value) {
     glutTimerFunc(1000, timer, 0);
 }
 
-void updateOppo(int value) {
+void updateOppo(int value)
+{
     if (oppoY <= -27) {
         oppoY = randGen(MIN, MAX);
         oppoX = randGen(-13, 2);
@@ -426,7 +445,8 @@ void updateOppo(int value) {
     glutTimerFunc(timeUpdate, updateOppo, 0);
 }
 
-void update2Oppo(int value) {
+void update2Oppo(int value)
+{
     if (oppo2Y <= -33) {
         oppo2Y = randGen(MIN, MAX);
         oppo2X = randGen(-7, 2);
@@ -440,7 +460,8 @@ void update2Oppo(int value) {
     glutTimerFunc(timeUpdate, update2Oppo, 0);
 }
 
-void update3Oppo(int value) {
+void update3Oppo(int value)
+{
     if (oppo3Y <= -39) {
         oppo3Y = randGen(MIN, MAX);
         oppo3X = randGen(0, 2);
@@ -453,18 +474,17 @@ void update3Oppo(int value) {
     glutTimerFunc(timeUpdate, update3Oppo, 0);
 }
 
+void update(int value)
+{
 
-void update(int value) {
-
-    if ( top <= 13 ) {
+    if (top <= 13) {
         top = 27.0f;
     }
-        top--;
+    top--;
 
     glutPostRedisplay();
     glutTimerFunc(100, update, 0);
 }
-
 
 void middleBar()
 {
@@ -478,24 +498,21 @@ void middleBar()
     glVertex3d(-0.5, top - 2, 0);
     glEnd();
 
-
     glColor3ub(0, 30, 20);
     glBegin(GL_QUADS);
     glVertex3d(-0.5, top, 0);
     glVertex3d(0.5, top, 0);
     glVertex3d(0.5, top - 10, 0);
-    glVertex3d(-0.5, top -10, 0);
+    glVertex3d(-0.5, top - 10, 0);
     glEnd();
-
 
     glColor3ub(0, 30, 20);
     glBegin(GL_QUADS);
-    glVertex3d(-0.5, top -12, 0);
-    glVertex3d(0.5, top -12, 0);
+    glVertex3d(-0.5, top - 12, 0);
+    glVertex3d(0.5, top - 12, 0);
     glVertex3d(0.5, top - 22, 0);
     glVertex3d(-0.5, top - 22, 0);
     glEnd();
-
 
     glColor3ub(0, 30, 20);
     glBegin(GL_QUADS);
@@ -505,7 +522,6 @@ void middleBar()
     glVertex3d(-0.5, top - 34, 0);
     glEnd();
     glPopMatrix();
-
 }
 
 void road()
@@ -537,32 +553,31 @@ void road()
     glVertex3d(+9, -17, 0);
     glEnd();
     glPopMatrix();
-
-
 }
 
-void processSpecialKeys (int key, int mx, int my) {
-    switch(key){
-    case GLUT_KEY_LEFT :
+void processSpecialKeys(int key, int mx, int my)
+{
+    switch (key) {
+    case GLUT_KEY_LEFT:
         if (positionx >= -3) {
-            positionx-=1.0;
+            positionx -= 1.0;
         }
         glutPostRedisplay();
         break;
-    case GLUT_KEY_RIGHT :
+    case GLUT_KEY_RIGHT:
         if (positionx <= +8) {
-            positionx+=1.0;
+            positionx += 1.0;
         }
         glutPostRedisplay();
         break;
-    case GLUT_KEY_DOWN :
+    case GLUT_KEY_DOWN:
         if (timeUpdate <= 200) {
             timeUpdate++;
         }
         glutPostRedisplay();
         break;
-    case GLUT_KEY_UP :
-        if (timeUpdate >=20) {
+    case GLUT_KEY_UP:
+        if (timeUpdate >= 20) {
             timeUpdate--;
         }
         glutPostRedisplay();
@@ -575,14 +590,14 @@ void processSpecialKeys (int key, int mx, int my) {
 void sideBorder()
 {
     glPushMatrix();
-    glColor3ub(52,61,70);
+    glColor3ub(52, 61, 70);
     glBegin(GL_QUADS);
     glVertex3d(-9, 17, 0);
     glVertex3d(-8, 17, 0);
     glVertex3d(-8, -17, 0);
     glVertex3d(-9, -17, 0);
     glEnd();
-    glColor3ub(52,61,70);
+    glColor3ub(52, 61, 70);
     glBegin(GL_QUADS);
     glVertex3d(+9, 17, 0);
     glVertex3d(+8, 17, 0);
@@ -590,43 +605,37 @@ void sideBorder()
     glVertex3d(+9, -17, 0);
     glEnd();
     glPopMatrix();
-
 }
-
 
 void car()
 {
-    Point p1 =  Point(-4, -11);
-    Point p2 =  Point(-1, -11);
-    Point p3 =  Point(-1, -16);
-    Point p4 =  Point(-4, -16);
+    Point p1 = Point(-4, -11);
+    Point p2 = Point(-1, -11);
+    Point p3 = Point(-1, -16);
+    Point p4 = Point(-4, -16);
 
     // inner quad
-    Point p5 =  Point(-3, -13);
-    Point p6 =  Point(-2, -13);
-    Point p7 =  Point(-2, -15);
-    Point p8 =  Point(-3, -15);
+    Point p5 = Point(-3, -13);
+    Point p6 = Point(-2, -13);
+    Point p7 = Point(-2, -15);
+    Point p8 = Point(-3, -15);
 
     c = carObj(p1, p2, p3, p4, p5, p6, p7, p8);
     c.PlayercarDraw();
     // showPoint(c);
 }
 
-
 void carOppo()
 {
-    Point p1 =  Point(-4+7, -11+22);
-    Point p2 =  Point(-1+7, -11+22);
-    Point p3 =  Point(-1+7, -16+22);
-    Point p4 =  Point(-4+7, -16+22);
+    Point p1 = Point(-4 + 7, -11 + 22);
+    Point p2 = Point(-1 + 7, -11 + 22);
+    Point p3 = Point(-1 + 7, -16 + 22);
+    Point p4 = Point(-4 + 7, -16 + 22);
 
-
-    Point p5 =  Point(-4+7+2, -11+22-1);
-    Point p6 =  Point(-4+7+1, -11+22-1);
-    Point p7 =  Point(-4+7+1, -11+22-3);
-    Point p8 =  Point(-4+7+2, -11+22-3);
-
-
+    Point p5 = Point(-4 + 7 + 2, -11 + 22 - 1);
+    Point p6 = Point(-4 + 7 + 1, -11 + 22 - 1);
+    Point p7 = Point(-4 + 7 + 1, -11 + 22 - 3);
+    Point p8 = Point(-4 + 7 + 2, -11 + 22 - 3);
 
     cO = Opponent(p1, p2, p3, p4, p5, p6, p7, p8, "car1");
     cO.oppocarDraw(oppoX, oppoY, 122, 143, 222);
@@ -636,53 +645,51 @@ void carOppo()
 
 void car2Oppo()
 {
-    Point p1 =  Point(-4+7-5, -11+22+4);
-    Point p2 =  Point(-1+7-5, -11+22+4);
-    Point p3 =  Point(-1+7-5, -16+22+4);
-    Point p4 =  Point(-4+7-5, -16+22+4);
+    Point p1 = Point(-4 + 7 - 5, -11 + 22 + 4);
+    Point p2 = Point(-1 + 7 - 5, -11 + 22 + 4);
+    Point p3 = Point(-1 + 7 - 5, -16 + 22 + 4);
+    Point p4 = Point(-4 + 7 - 5, -16 + 22 + 4);
 
-    Point p5 =  Point(-4+7-5+2, -11+22+4-1);
-    Point p6 =  Point(-4+7-5+1, -11+22+4-1);
-    Point p7 =  Point(-4+7-5+1, -11+22+4-3);
-    Point p8 =  Point(-4+7-5+2, -11+22+4-3);
+    Point p5 = Point(-4 + 7 - 5 + 2, -11 + 22 + 4 - 1);
+    Point p6 = Point(-4 + 7 - 5 + 1, -11 + 22 + 4 - 1);
+    Point p7 = Point(-4 + 7 - 5 + 1, -11 + 22 + 4 - 3);
+    Point p8 = Point(-4 + 7 - 5 + 2, -11 + 22 + 4 - 3);
 
     c1 = Opponent(p1, p2, p3, p4, p5, p6, p7, p8, "car2");
     c1.oppocarDraw(oppo2X, oppo2Y, 200, 155, 240);
     c1.ScoreUpdate();
     // showPoint(c1);
-
 }
 
 void car3Oppo()
 {
-    Point p1 =  Point(-4+7-5, -11+22+4);
-    Point p2 =  Point(-1+7-5, -11+22+4);
-    Point p3 =  Point(-1+7-5, -16+22+4);
-    Point p4 =  Point(-4+7-5, -16+22+4);
+    Point p1 = Point(-4 + 7 - 5, -11 + 22 + 4);
+    Point p2 = Point(-1 + 7 - 5, -11 + 22 + 4);
+    Point p3 = Point(-1 + 7 - 5, -16 + 22 + 4);
+    Point p4 = Point(-4 + 7 - 5, -16 + 22 + 4);
 
-    Point p5 =  Point(-4+7-5+2, -11+22+4-1);
-    Point p6 =  Point(-4+7-5+1, -11+22+4-1);
-    Point p7 =  Point(-4+7-5+1, -11+22+4-3);
-    Point p8 =  Point(-4+7-5+2, -11+22+4-3);
+    Point p5 = Point(-4 + 7 - 5 + 2, -11 + 22 + 4 - 1);
+    Point p6 = Point(-4 + 7 - 5 + 1, -11 + 22 + 4 - 1);
+    Point p7 = Point(-4 + 7 - 5 + 1, -11 + 22 + 4 - 3);
+    Point p8 = Point(-4 + 7 - 5 + 2, -11 + 22 + 4 - 3);
 
     c2 = Opponent(p1, p2, p3, p4, p5, p6, p7, p8, "car3");
     c2.oppocarDraw(oppo3X, oppo3Y, 133, 299, 155);
     c2.ScoreUpdate();
     // showPoint(c2);
-
 }
 
 void padestrian()
 {
     glPushMatrix();
-    glColor3ub(139,69,19);
+    glColor3ub(139, 69, 19);
     glBegin(GL_QUADS);
     glVertex3d(-14, 17, 0);
     glVertex3d(-9, 17, 0);
     glVertex3d(-9, -17, 0);
     glVertex3d(-14, -17, 0);
     glEnd();
-    glColor3ub(139,69,19);
+    glColor3ub(139, 69, 19);
     glBegin(GL_QUADS);
     glVertex3d(+14, 17, 0);
     glVertex3d(+9, 17, 0);
@@ -692,10 +699,9 @@ void padestrian()
     glPopMatrix();
 }
 
-void display()
+void startGame()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 
     padestrian();
     sideBorder();
@@ -721,7 +727,6 @@ void display()
     car3Oppo();
     glPopMatrix();
 
-
     tree();
 
     collisionCheck(c, cO);
@@ -734,11 +739,58 @@ void display()
     glFlush();
 }
 
+void frontPage()
+{
+    //Text Information in Frist Page
+    if (gv == 1) {
+        glColor3ub(204, 204, 255);
+        renderBitmapString(-7, -5, (void*)font1, "GAME OVER");
+        glColor3ub(128, 128, 128);
+        char buffer2[50];
+        sprintf(buffer2, "Your Score is : %d", score);
+        renderBitmapString(-7, -7, (void*)font1, buffer2);
+    }
+
+    glColor3ub(169, 169, 169);
+    renderBitmapString(-8, 10, (void*)font1, "2D Car Racing obstacle survivor ");
+
+    glColor3ub(128, 128, 128);
+    renderBitmapString(-7, 8, (void*)font2, "Press SPACE to START");
+    renderBitmapString(-7, 6, (void*)font2, "Press ESC to Exit");
+
+    glColor3ub(52, 61, 70);
+    renderBitmapString(-7, 4, (void*)font3, "Press UP to increase Speed");
+    renderBitmapString(-7, 2, (void*)font3, "Press DWON to decrease Speed");
+    renderBitmapString(-7, 0, (void*)font3, "Press RIGHT to turn Right");
+    renderBitmapString(-7, -2, (void*)font3, "Press LEFT to turn Left");
+
+    glColor3f(0, 0, 0);
+    renderBitmapString(-8, -15, (void*)font3, "Project By:");
+    renderBitmapString(-8, -16, (void*)font3, "ehzawad");
+}
+
+void display()
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    if (start == 1) {
+        startGame();
+    }
+
+    else {
+        frontPage();
+        //glClearColor(0.184, 0.310, 0.310,1);
+    }
+
+    glFlush();
+    glutSwapBuffers();
+}
+
 int main(int argc, char** argv)
 {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
-    glutInitWindowSize(2*280, 2*340);
+    glutInitWindowSize(2 * 280, 2 * 340);
     glutCreateWindow("Racing with obstacles");
     init();
     glutDisplayFunc(display);
@@ -748,13 +800,16 @@ int main(int argc, char** argv)
     glutTimerFunc(100, update2Oppo, 0);
     glutTimerFunc(100, update3Oppo, 0);
     glutSpecialFunc(processSpecialKeys);
+    glutKeyboardFunc(processKeys);
 
-    sf::Music music;
-    if (!music.openFromFile("music.ogg")) {
-        return -1;
+    if (start == 1) {
+        sf::Music music;
+        if (!music.openFromFile("music.ogg")) {
+            return -1;
+        }
+        music.setVolume(50);
+        music.play();
     }
-    music.setVolume(50);
-    music.play();
     glutMainLoop();
     return 0;
 }
