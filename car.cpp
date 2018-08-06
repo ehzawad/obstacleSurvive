@@ -212,7 +212,7 @@ public:
         // glColor3ub(120, 230, 240);
         glBegin(GL_LINES);
         glVertex3d(A.x, A.y, 0);
-        glVertex3d(E.x, E.y, 0);
+        glVertex3d(F.x, F.y, 0);
         glEnd();
 
         // glColor3ub(120, 230, 240);
@@ -220,21 +220,21 @@ public:
         glColor3ub(0, 0, 0);
         glBegin(GL_LINES);
         glVertex3d(B.x, B.y, 0);
-        glVertex3d(F.x, F.y, 0);
+        glVertex3d(E.x, E.y, 0);
         glEnd();
 
         glColor3ub(0, 0, 0);
         // glColor3ub(120, 230, 240);
         glBegin(GL_LINES);
         glVertex3d(C.x, C.y, 0);
-        glVertex3d(G.x, G.y, 0);
+        glVertex3d(H.x, H.y, 0);
         glEnd();
 
         glColor3ub(0, 0, 0);
         // glColor3ub(120, 230, 240);
         glBegin(GL_LINES);
         glVertex3d(D.x, D.y, 0);
-        glVertex3d(H.x, H.y, 0);
+        glVertex3d(G.x, G.y, 0);
         glEnd();
 
         A.x = A.x + tx;
