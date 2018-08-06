@@ -30,9 +30,7 @@ GLfloat positionx = 0.0f;
 auto score = 0;
 
 // For Display TEXT
-const auto font1=GLUT_BITMAP_TIMES_ROMAN_24;
-const auto font2=GLUT_BITMAP_HELVETICA_18 ;
-const auto font3=GLUT_BITMAP_8_BY_13;
+const auto font=GLUT_BITMAP_8_BY_13;
 
 char s[30];
 void renderBitmapString(float x, float y, void *font,const char *string){
@@ -48,14 +46,19 @@ void dataInfo()
     //Print Score
     char buffer[50];
     sprintf(buffer, "SCORE: %d", score);
-    glColor3f(0.000, 1.000, 0.000);
-    renderBitmapString(9, 15, (void*)font3, buffer);
+    glColor3f(0.050, 1.000, 0.0400);
+    renderBitmapString(9.5, 15, (void*)font, buffer);
 
     //Speed Print
     char buffer1[50];
     sprintf(buffer1, "SPEED:%dKm/h", abs(timeUpdate - 100));
-    glColor3f(0.000, 1.000, 0.000);
-    renderBitmapString(9, 15 - 2, (void*)font3, buffer1);
+    glColor3f(0.000, 1.000, 0.500);
+    renderBitmapString(9.5, 15 - 2, (void*)font, buffer1);
+
+    char buffer2[50];
+    sprintf(buffer2, "Drive Safe");
+    glColor3f(0.400, 1.000, 0.600);
+    renderBitmapString(9.5, -10, (void*)font, buffer2);
 }
 
 void tree()
