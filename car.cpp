@@ -413,7 +413,6 @@ void updateOppo(int value)
 {
     if (oppoY <= -27) {
         oppoY = randGen(MIN, MAX);
-        // oppoX = randGen(-13, 2);
         oppoX = randGen(-13, -8);
         oppoX++;
     }
@@ -432,8 +431,7 @@ void update2Oppo(int value)
 {
     if (oppo2Y <= -42) {
         oppo2Y = randGen(MIN, MAX);
-        // oppo2X = randGen(-7, 2);
-        oppo2X = randGen(-3, 0);
+        oppo2X = randGen(-2, 0);
 
         oppo2X++;
     }
@@ -448,7 +446,6 @@ void update3Oppo(int value)
 {
     if (oppo3Y <= -39) {
         oppo3Y = randGen(MIN, MAX);
-        /* oppo3X = randGen(0, 2); */
         oppo3X = randGen(3, 7);
         oppo3X++;
     }
@@ -475,7 +472,7 @@ void middleBar()
 {
 
     glPushMatrix();
-    glColor3ub(0, 30, 20);
+    glColor3ub(255, 255, 255);
     glBegin(GL_QUADS);
     glVertex3d(-0.5, top + 12, 0);
     glVertex3d(0.5, top + 12, 0);
@@ -483,7 +480,7 @@ void middleBar()
     glVertex3d(-0.5, top - 2, 0);
     glEnd();
 
-    glColor3ub(0, 30, 20);
+    glColor3ub(255, 255, 255);
     glBegin(GL_QUADS);
     glVertex3d(-0.5, top, 0);
     glVertex3d(0.5, top, 0);
@@ -491,7 +488,7 @@ void middleBar()
     glVertex3d(-0.5, top - 10, 0);
     glEnd();
 
-    glColor3ub(0, 30, 20);
+    glColor3ub(255, 255, 255);
     glBegin(GL_QUADS);
     glVertex3d(-0.5, top - 12, 0);
     glVertex3d(0.5, top - 12, 0);
@@ -499,7 +496,7 @@ void middleBar()
     glVertex3d(-0.5, top - 22, 0);
     glEnd();
 
-    glColor3ub(0, 30, 20);
+    glColor3ub(255, 255, 255);
     glBegin(GL_QUADS);
     glVertex3d(-0.5, top - 24, 0);
     glVertex3d(0.5, top - 24, 0);
