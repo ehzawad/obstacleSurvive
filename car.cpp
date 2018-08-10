@@ -537,6 +537,20 @@ void road()
     glPopMatrix();
 }
 
+void roadSpace()
+{
+    glPushMatrix();
+
+    glColor3ub(101, 115, 126);
+    glBegin(GL_QUADS);
+    glVertex3d(-8, +17, 0);
+    glVertex3d(+8, +17, 0);
+    glVertex3d(+8, -17, 0);
+    glVertex3d(-8, -17, 0);
+    glEnd();
+    glPopMatrix();
+}
+
 void processSpecialKeys(int key, int mx, int my)
 {
     switch (key) {
@@ -671,6 +685,11 @@ void startGame()
     glPushMatrix();
     road();
     glPopMatrix();
+
+    glPushMatrix();
+    roadSpace();
+    glPopMatrix();
+
     middleBar();
 
     glPushMatrix();
