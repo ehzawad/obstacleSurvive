@@ -162,28 +162,18 @@ public:
     Point C;
     Point D;
 
-    // inner quad
-    Point E;
-    Point F;
-    Point G;
-    Point H;
-
     std::string name;
     Opponent()
     {
     }
 
-    Opponent(Point& a, Point& b, Point& c, Point& d, Point& e, Point& f, Point& g, Point& h, std::string name)
+    Opponent(Point& a, Point& b, Point& c, Point& d,std::string name)
     {
         this->A = a;
         this->B = b;
         this->C = c;
         this->D = d;
 
-        this->E = e;
-        this->F = f;
-        this->G = g;
-        this->H = h;
 
         this->name = name;
     }
@@ -194,49 +184,53 @@ public:
         glTranslatef(tx, ty, 0.0f);
         glColor3ub(r, g, b);
         glBegin(GL_QUADS);
-        glVertex3d(A.x, A.y, 0);
-        glVertex3d(B.x, B.y, 0);
-        glVertex3d(C.x, C.y, 0);
-        glVertex3d(D.x, D.y, 0);
+        glVertex3d(D.x + .5, D.y, 0);
+        glVertex3d(C.x - .5, C.y, 0);
+        glVertex3d(B.x, C.y + 1.5, 0);
+        glVertex3d(A.x, D.y + 1.5, 0);
         glEnd();
 
+        //
+
+        glColor3ub(155, 50, 25);
+        glBegin(GL_TRIANGLES);
+        glVertex3d(C.x , C.y + 1.5, 0);
+        glVertex3d(C.x + 0.1 , C.y +1.5, 0);
+        glVertex3d(C.x , C.y + 2.1, 0);
+        glEnd();
+
+        glColor3ub(155, 50, 25);
+        glBegin(GL_TRIANGLES);
+        glVertex3d(C.x - 3 , C.y + 1.5, 0);
+        glVertex3d(C.x - 3 - 0.1 , C.y +1.5, 0);
+        glVertex3d(C.x - 3, C.y + 2.1, 0);
+        glEnd();
+        //
         glColor3ub(100, 100, 100);
         glBegin(GL_QUADS);
-        glVertex3d(E.x, E.y, 0);
-        glVertex3d(F.x, F.y, 0);
-        glVertex3d(G.x, G.y, 0);
-        glVertex3d(H.x, H.y, 0);
+        glVertex3d(D.x, D.y + 1.5, 0);
+        glVertex3d(C.x, C.y + 1.5, 0);
+        glVertex3d(C.x, C.y + 2.5, 0);
+        glVertex3d(D.x, D.y + 2.5, 0);
         glEnd();
 
-        glColor3ub(0, 0, 0);
-        // glColor3ub(120, 230, 240);
-        glBegin(GL_LINES);
-        glVertex3d(A.x, A.y, 0);
-        glVertex3d(F.x, F.y, 0);
+        glColor3ub(210, 180, 110);
+        glBegin(GL_QUADS);
+        glVertex3d(D.x, D.y + 2.5, 0);
+        glVertex3d(C.x, C.y + 2.5, 0);
+        glVertex3d(C.x, C.y + 4.5, 0);
+        glVertex3d(D.x, D.y + 4.5, 0);
         glEnd();
 
-        // glColor3ub(120, 230, 240);
+        glColor3ub(155, 155, 155);
+        glBegin(GL_QUADS);
+        glVertex3d(D.x, D.y + 4.5, 0);
+        glVertex3d(C.x, C.y + 4.5, 0);
+        glVertex3d(C.x, C.y + 6, 0);
+        glVertex3d(D.x, D.y + 6, 0);
+        glEnd();
+
         //
-        glColor3ub(0, 0, 0);
-        glBegin(GL_LINES);
-        glVertex3d(B.x, B.y, 0);
-        glVertex3d(E.x, E.y, 0);
-        glEnd();
-
-        glColor3ub(0, 0, 0);
-        // glColor3ub(120, 230, 240);
-        glBegin(GL_LINES);
-        glVertex3d(C.x, C.y, 0);
-        glVertex3d(H.x, H.y, 0);
-        glEnd();
-
-        glColor3ub(0, 0, 0);
-        // glColor3ub(120, 230, 240);
-        glBegin(GL_LINES);
-        glVertex3d(D.x, D.y, 0);
-        glVertex3d(G.x, G.y, 0);
-        glEnd();
-
         A.x = A.x + tx;
         B.x = B.x + tx;
         C.x = C.x + tx;
@@ -246,17 +240,6 @@ public:
         B.y = B.y + ty;
         C.y = C.y + ty;
         D.y = D.y + ty;
-
-        // inner Quads
-        E.x = E.x + tx;
-        F.x = F.x + tx;
-        G.x = G.x + tx;
-        H.x = H.x + tx;
-
-        E.y = E.y + ty;
-        F.y = F.y + ty;
-        G.y = G.y + ty;
-        H.y = H.y + ty;
 
         glPopMatrix();
     }
@@ -310,8 +293,8 @@ public:
         //
         glBegin(GL_TRIANGLES);
         glVertex3d(A.x , A.y -1.5, 0);
-        glVertex3d(A.x - 0.2 , A.y -1.5, 0);
-        glVertex3d(A.x , A.y - 2.2, 0);
+        glVertex3d(A.x - 0.1 , A.y -1.5, 0);
+        glVertex3d(A.x , A.y - 2.1, 0);
         //
         glEnd();
 
@@ -319,8 +302,8 @@ public:
         //
         glBegin(GL_TRIANGLES);
         glVertex3d(A.x + 3 , A.y -1.5, 0);
-        glVertex3d(A.x + 3 + 0.2 , A.y -1.5, 0);
-        glVertex3d(A.x + 3 , A.y - 2.2, 0);
+        glVertex3d(A.x + 3 + 0.1 , A.y -1.5, 0);
+        glVertex3d(A.x + 3 , A.y - 2.1, 0);
         //
         glEnd();
 
@@ -374,7 +357,7 @@ void collisionCheck(carObj& o, Opponent& p)
     float xRightPlayerCollide = abs(o.B.x - p.C.x);
     // std::cout << xRightPlayerCollide << std::endl;
 
-    if ((yFaceToFaceCollide <= 0 || yDownToFaceCollide <= 4) && (xLeftPlayerCollide < 3 || xRightPlayerCollide < 3)) {
+    if ((yFaceToFaceCollide <= 0 || yDownToFaceCollide <= 5) && (xLeftPlayerCollide < 3 || xRightPlayerCollide < 3)) {
 
         start = 0;
         gv = 1;
@@ -610,8 +593,8 @@ void car()
 {
     Point p1 = Point(-4, -11);
     Point p2 = Point(-1, -11);
-    Point p3 = Point(-1, -16);
-    Point p4 = Point(-4, -16);
+    Point p3 = Point(-1, -17);
+    Point p4 = Point(-4, -17);
 
     c = carObj(p1, p2, p3, p4);
     c.PlayercarDraw();
@@ -622,15 +605,11 @@ void carOppo()
 {
     Point p1 = Point(-4 + 7, -11 + 22);
     Point p2 = Point(-1 + 7, -11 + 22);
-    Point p3 = Point(-1 + 7, -16 + 22);
-    Point p4 = Point(-4 + 7, -16 + 22);
+    Point p3 = Point(-1 + 7, -17 + 22);
+    Point p4 = Point(-4 + 7, -17 + 22);
 
-    Point p5 = Point(-4 + 7 + 2, -11 + 22 - 1);
-    Point p6 = Point(-4 + 7 + 1, -11 + 22 - 1);
-    Point p7 = Point(-4 + 7 + 1, -11 + 22 - 3);
-    Point p8 = Point(-4 + 7 + 2, -11 + 22 - 3);
 
-    cO = Opponent(p1, p2, p3, p4, p5, p6, p7, p8, "car1");
+    cO = Opponent(p1, p2, p3, p4, "first Opponent");
     cO.oppocarDraw(oppoX, oppoY, 122, 143, 222);
     cO.ScoreUpdate();
     // showPoint(cO);
@@ -640,15 +619,10 @@ void car2Oppo()
 {
     Point p1 = Point(-4 + 7 - 5, -11 + 22 + 4 + 10);
     Point p2 = Point(-1 + 7 - 5, -11 + 22 + 4 + 10);
-    Point p3 = Point(-1 + 7 - 5, -16 + 22 + 4 + 10);
-    Point p4 = Point(-4 + 7 - 5, -16 + 22 + 4 + 10);
+    Point p3 = Point(-1 + 7 - 5, -17 + 22 + 4 + 10);
+    Point p4 = Point(-4 + 7 - 5, -17 + 22 + 4 + 10);
 
-    Point p5 = Point(-4 + 7 - 5 + 2, -11 + 22 + 4 - 1 + 10);
-    Point p6 = Point(-4 + 7 - 5 + 1, -11 + 22 + 4 - 1 + 10);
-    Point p7 = Point(-4 + 7 - 5 + 1, -11 + 22 + 4 - 3 + 10);
-    Point p8 = Point(-4 + 7 - 5 + 2, -11 + 22 + 4 - 3 + 10);
-
-    c1 = Opponent(p1, p2, p3, p4, p5, p6, p7, p8, "car2");
+    c1 = Opponent(p1, p2, p3, p4, "second Opponent");
     c1.oppocarDraw(oppo2X, oppo2Y, 255, 40, 0);
     c1.ScoreUpdate();
     // showPoint(c1);
@@ -658,15 +632,10 @@ void car3Oppo()
 {
     Point p1 = Point(-4 + 7 - 5, -11 + 22 + 4);
     Point p2 = Point(-1 + 7 - 5, -11 + 22 + 4);
-    Point p3 = Point(-1 + 7 - 5, -16 + 22 + 4);
-    Point p4 = Point(-4 + 7 - 5, -16 + 22 + 4);
+    Point p3 = Point(-1 + 7 - 5, -17 + 22 + 4);
+    Point p4 = Point(-4 + 7 - 5, -17 + 22 + 4);
 
-    Point p5 = Point(-4 + 7 - 5 + 2, -11 + 22 + 4 - 1);
-    Point p6 = Point(-4 + 7 - 5 + 1, -11 + 22 + 4 - 1);
-    Point p7 = Point(-4 + 7 - 5 + 1, -11 + 22 + 4 - 3);
-    Point p8 = Point(-4 + 7 - 5 + 2, -11 + 22 + 4 - 3);
-
-    c2 = Opponent(p1, p2, p3, p4, p5, p6, p7, p8, "car3");
+    c2 = Opponent(p1, p2, p3, p4, "third Opponent");
     c2.oppocarDraw(oppo3X, oppo3Y, 72,209,204);
     c2.ScoreUpdate();
     // showPoint(c2);
