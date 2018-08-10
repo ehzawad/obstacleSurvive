@@ -413,7 +413,8 @@ void updateOppo(int value)
 {
     if (oppoY <= -27) {
         oppoY = randGen(MIN, MAX);
-        oppoX = randGen(-13, 2);
+        // oppoX = randGen(-13, 2);
+        oppoX = randGen(-13, -8);
         oppoX++;
     }
 
@@ -431,7 +432,8 @@ void update2Oppo(int value)
 {
     if (oppo2Y <= -42) {
         oppo2Y = randGen(MIN, MAX);
-        oppo2X = randGen(-7, 2);
+        // oppo2X = randGen(-7, 2);
+        oppo2X = randGen(-3, 0);
 
         oppo2X++;
     }
@@ -446,7 +448,8 @@ void update3Oppo(int value)
 {
     if (oppo3Y <= -39) {
         oppo3Y = randGen(MIN, MAX);
-        oppo3X = randGen(0, 2);
+        /* oppo3X = randGen(0, 2); */
+        oppo3X = randGen(3, 7);
         oppo3X++;
     }
 
