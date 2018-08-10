@@ -88,7 +88,7 @@ void dataInfo()
 
     //Speed Print
     char buffer1[50];
-    sprintf(buffer1, "SPEED:%d m/s", abs(timeUpdate - 100));
+    sprintf(buffer1, "SPEED:%d m/s", (timeUpdate - 100) > 0 ? (timeUpdate - 100) : abs((timeUpdate - 100)));
     glColor3ub(169, 169, 169);
     renderBitmapString(9, 15 - 2, (void*)font, buffer1);
 
@@ -556,7 +556,7 @@ void processSpecialKeys(int key, int mx, int my)
         glutPostRedisplay();
         break;
     case GLUT_KEY_DOWN:
-        if (timeUpdate <= 200) {
+        if (timeUpdate <= 100) {
             timeUpdate++;
         }
         glutPostRedisplay();
