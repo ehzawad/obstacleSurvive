@@ -20,6 +20,10 @@ auto timeUpdate = 100;
 int start = 0;
 int gv = 0;
 
+int Hour = 0;
+int Minute = 0;
+int Second = 0;
+
 GLfloat top = 27.0f;
 GLfloat oppoY = 0.0f;
 GLfloat oppoX = 0.0f;
@@ -46,6 +50,20 @@ void renderBitmapString(float x, float y, void* font, const char* string)
     for (c = string; *c != '\0'; c++) {
         glutBitmapCharacter(font, *c);
     }
+}
+
+void move(int n)
+{
+    time_t Now = time(nullptr);
+    // struct tm
+    struct tm* DateTime = localtime(&Now);
+
+    Hour = DateTime->tm_hour;
+    Minute = DateTime->tm_min;
+    Second = DateTime->tm_sec;
+
+    glutPostRedisplay();
+    glutTimerFunc(1000, move, n);
 }
 
 void processKeys(unsigned char key, int x, int y)
@@ -91,6 +109,11 @@ void dataInfo()
     sprintf(buffer1, "SPEED:%d m/s", (timeUpdate - 200) > 0 ? (timeUpdate - 200) : abs((timeUpdate - 200)));
     glColor3ub(169, 169, 169);
     renderBitmapString(9, 15 - 2, (void*)font, buffer1);
+
+    char buffertime[50];
+    sprintf(buffertime, "Clock %d:%d:%d", Hour, Minute, Second);
+    glColor3ub(169, 169, 169);
+    renderBitmapString(9, 15 - 5, (void*)font, buffertime);
 
     char buffer2[50];
     sprintf(buffer2, "Drive Safe");
@@ -771,7 +794,7 @@ int main(int argc, char** argv)
 {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
-    glutInitWindowSize(2 * 280, 2 * 340);
+    glutInitWindowSize(2.2 * 280, 2.1 * 340);
     glutCreateWindow("Racing with obstacles");
     init();
     glutDisplayFunc(display);
@@ -780,6 +803,7 @@ int main(int argc, char** argv)
     glutTimerFunc(100, updateOppo, 0);
     glutTimerFunc(100, update2Oppo, 0);
     glutTimerFunc(100, update3Oppo, 0);
+    glutTimerFunc(1000, move, 0);
     glutSpecialFunc(processSpecialKeys);
     glutKeyboardFunc(processKeys);
 
