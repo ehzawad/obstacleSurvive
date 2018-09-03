@@ -768,9 +768,12 @@ void frontPage()
     renderBitmapString(-7, 0, (void*)font3, "Press RIGHT to turn Right");
     renderBitmapString(-7, -2, (void*)font3, "Press LEFT to turn Left");
 
-    glColor3f(0, 0, 0);
-    renderBitmapString(-8, -15, (void*)font3, "Project By:");
-    renderBitmapString(-8, -16, (void*)font3, "ehzawad");
+    glColor3f(0, 0, 30);
+    renderBitmapString(-8, -10, (void*)font3, "Project By:");
+    renderBitmapString(-8, -12, (void*)font3, "Zawad, Emrul Hasan    -> 15-30142-2");
+    renderBitmapString(-8, -13, (void*)font3, "Mahmud, MD. Tanzin    -> 15-30433-3");
+    renderBitmapString(-8, -14, (void*)font3, "Alam, Novera Binte    -> 15-28781-1");
+    renderBitmapString(-8, -15, (void*)font3, "Dipu, MD.Saiful Islam -> 13-23101-1");
 }
 
 void display()
